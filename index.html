@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .file-list {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .file-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .file-item:hover {
+            background-color: #e0e6e8;
+        }
+        .file-item a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .file-item a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .file-list {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>File Downloads</h1>
+    <div class="file-list">
+        <div class="file-item">
+            <a href="assets/Coca-Cola-A-Global-Icon.pptx" download>Presentation for coca cola</a>
+        </div>
+    </div>
+</body>
+</html>
