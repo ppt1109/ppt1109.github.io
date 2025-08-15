@@ -3,62 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Page</title>
+    <title>Nashik Trip Planning</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
         }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
         h1 {
             color: #2c3e50;
             text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
         }
-        .file-list {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-top: 20px;
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
         }
-        .file-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
         }
-        .file-item:hover {
-            background-color: #e0e6e8;
+        
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #2980b9;
         }
-        .file-item a {
-            color: #3498db;
-            text-decoration: none;
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+        
+        tr:nth-child(even) td {
+            background: #f1f8ff;
+        }
+        
+        tr:hover td {
+            background: #e8f4f8;
+        }
+        
+        .price {
             font-weight: bold;
+            color: #27ae60;
         }
-        .file-item a:hover {
-            text-decoration: underline;
+        
+        .time {
+            font-family: 'Courier New', monospace;
+            color: #8e44ad;
         }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .file-list {
-                padding: 10px;
-            }
+        
+        .train-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .return-section {
+            background: #fff3cd;
+        }
+        
+        .return-section td {
+            background: #fff3cd;
+        }
+        
+        .side-trips {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .side-trips h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+        
+        .side-trips ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .side-trips li {
+            margin: 8px 0;
+            color: #155724;
+        }
+        
+        .export-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        .copy-btn:hover {
+            background: #2980b9;
         }
     </style>
 </head>
 <body>
-    <h1>File Downloads</h1>
-    <div class="file-list">
-        <div class="file-item">
-            <a href="assets/Coca-Cola-A-Global-Icon.pptx" download>Presentation for coca cola</a>
+    <div class="container">
+        <h1>🚂 Nashik Trip Planning</h1>
+        
+        <div class="export-info">
+            <strong>📋 Excel Export Ready:</strong> You can copy this data and paste it directly into Excel, or use the CSV data below for easy import.
+            <button class="copy-btn" onclick="copyCSVData()">Copy CSV Data for Excel</button>
+        </div>
+
+        <h2>🚆 Outbound Journey Options</h2>
+        <table id="outbound-table">
+            <thead>
+                <tr>
+                    <th>Train No.</th>
+                    <th>Train Name</th>
+                    <th>Class</th>
+                    <th>Price (₹/person)</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>22223</td>
+                    <td class="train-name">Vande Bharat</td>
+                    <td>AC Chair</td>
+                    <td class="price">₹735</td>
+                    <td class="time">CSMT 6:20 AM</td>
+                    <td class="time">Nashik Rd 9:00 AM</td>
+                    <td>2h 40m</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">22177</td>
+                    <td rowspan="3" class="train-name">Mahanagari Express</td>
+                    <td>2nd AC</td>
+                    <td class="price">₹765</td>
+                    <td rowspan="3" class="time">CSMT 0:10 AM</td>
+                    <td rowspan="3" class="time">Nashik Rd 3:40 AM</td>
+                    <td rowspan="3">3h 30m</td>
+                </tr>
+                <tr>
+                    <td>3rd AC</td>
+                    <td class="price">₹560</td>
+                </tr>
+                <tr>
+                    <td>Sleeper</td>
+                    <td class="price">₹180</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">22538</td>
+                    <td rowspan="3" class="train-name">Kushinagar Express</td>
+                    <td>2nd AC</td>
+                    <td class="price">₹765</td>
+                    <td rowspan="3" class="time">LTT 0:35 AM</td>
+                    <td rowspan="3" class="time">Nashik Rd 3:55 AM</td>
+                    <td rowspan="3">3h 20m</td>
+                </tr>
+                <tr>
+                    <td>3rd AC</td>
+                    <td class="price">₹560</td>
+                </tr>
+                <tr>
+                    <td>Sleeper</td>
+                    <td class="price">₹180</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Return Journey Options</h2>
+        <table id="return-table">
+            <thead>
+                <tr>
+                    <th>Train No.</th>
+                    <th>Train Name</th>
+                    <th>Class</th>
+                    <th>Price (₹/person)</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody class="return-section">
+                <tr>
+                    <td rowspan="2">11062</td>
+                    <td rowspan="2" class="train-name">JYG LTT Express</td>
+                    <td>2nd AC</td>
+                    <td class="price">₹525</td>
+                    <td rowspan="2" class="time">Nashik Rd 8:45 PM</td>
+                    <td rowspan="2" class="time">LTT 0:30 AM</td>
+                    <td rowspan="2">3h 45m</td>
+                </tr>
+                <tr>
+                    <td>Sleeper</td>
+                    <td class="price">₹150</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">22537</td>
+                    <td rowspan="2" class="train-name">Kushinagar Express</td>
+                    <td>2nd AC</td>
+                    <td class="price">₹560</td>
+                    <td rowspan="2" class="time">Nashik Rd 8:30 PM</td>
+                    <td rowspan="2" class="time">LTT 0:20 AM</td>
+                    <td rowspan="2">3h 50m</td>
+                </tr>
+                <tr>
+                    <td>Sleeper</td>
+                    <td class="price">₹180</td>
+                </tr>
+                <tr>
+                    <td>22224</td>
+                    <td class="train-name">Vande Bharat</td>
+                    <td>AC Chair</td>
+                    <td class="price">₹810</td>
+                    <td class="time">Nashik Rd 7:35 PM</td>
+                    <td class="time">CSMT 10:50 PM</td>
+                    <td>3h 15m</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="side-trips">
+            <h3>🎯 Side Trips in Nashik</h3>
+            <ul>
+                <li><strong>Sula Vineyards</strong> - Wine tour & photography</li>
+                <li><strong>Panchavati</strong> - Ramkund, Kalaram Mandir</li>
+                <li><strong>Someshwar Waterfalls</strong> - (Seasonal)</li>
+            </ul>
+            <p><strong>🚗 Local Transport:</strong> Auto rickshaw or Ola/Uber (~₹300–500 split among 6 people)</p>
+        </div>
+
+        <div id="csv-data" style="display: none;">
+Train No,Train Name,Class,Price,Departure Station,Departure Time,Arrival Station,Arrival Time,Journey Type
+22223,Vande Bharat,AC Chair,735,CSMT,6:20 AM,Nashik Rd,9:00 AM,Outbound
+22177,Mahanagari Express,2nd AC,765,CSMT,0:10 AM,Nashik Rd,3:40 AM,Outbound
+22177,Mahanagari Express,3rd AC,560,CSMT,0:10 AM,Nashik Rd,3:40 AM,Outbound
+22177,Mahanagari Express,Sleeper,180,CSMT,0:10 AM,Nashik Rd,3:40 AM,Outbound
+22538,Kushinagar Express,2nd AC,765,LTT,0:35 AM,Nashik Rd,3:55 AM,Outbound
+22538,Kushinagar Express,3rd AC,560,LTT,0:35 AM,Nashik Rd,3:55 AM,Outbound
+22538,Kushinagar Express,Sleeper,180,LTT,0:35 AM,Nashik Rd,3:55 AM,Outbound
+11062,JYG LTT Express,2nd AC,525,Nashik Rd,20:45 PM,LTT,0:30 AM,Return
+11062,JYG LTT Express,Sleeper,150,Nashik Rd,20:45 PM,LTT,0:30 AM,Return
+22537,Kushinagar Express,2nd AC,560,Nashik Rd,20:30 PM,LTT,0:20 AM,Return
+22537,Kushinagar Express,Sleeper,180,Nashik Rd,20:30 PM,LTT,0:20 AM,Return
+22224,Vande Bharat,AC Chair,810,Nashik Rd,19:35 PM,CSMT,22:50 PM,Return
         </div>
     </div>
+
+    <script>
+        function copyCSVData() {
+            const csvData = document.getElementById('csv-data').textContent;
+            navigator.clipboard.writeText(csvData).then(function() {
+                alert('CSV data copied! You can now paste it into Excel.');
+            });
+        }
+    </script>
 </body>
 </html>
